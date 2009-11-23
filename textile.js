@@ -88,6 +88,9 @@ plugin.processTextile = function(s) {
 }
 
 plugin.onMessageReceived = function(event) {
-  Talker.insertMessage(event, plugin.processTextile(event.content));
-  return false;
+  if(event.paste == undefined) {
+    Talker.insertMessage(event, plugin.processTextile(event.content));
+    return false;
+  }
+  return true;
 }
