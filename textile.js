@@ -87,10 +87,6 @@ plugin.processTextile = function(s) {
   return r;
 }
 
-plugin.onMessageReceived = function(event) {
-  if(event.paste == undefined) {
-    Talker.insertMessage(event, plugin.processTextile(event.content));
-    return false;
-  }
-  return true;
+plugin.onMessageInsertion = function(event) {
+   Talker.getLastRow().find("p:last").html(plugin.processTextile(event.content));
 }
